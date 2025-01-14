@@ -1,0 +1,11 @@
+{
+  "name": "oidc-server-test",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "oidc-provider": "^8.6.0"
+  }
+}
