@@ -3,22 +3,10 @@ import express from 'express'
 
 import jwks from './config/jwks.js'
 import routes from './config/routes.js'
+// import { getUser } from './config/get-user.js'
 
 async function findAccount(ctx, sub, token) {
   try {
-    const user = await fetch('https://dummyjson.com/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: 'emilys',
-        password: 'emilyspass',
-        expiresInMins: 30, // optional, defaults to 60
-      }),
-      credentials: 'include', // Include cookies (e.g., accessToken) in the request
-    })
-    const info = await user.json()
-    console.log('user info >>>>', info)
-
     // @param ctx - koa request context
     // @param sub {string} - account identifier (subject)
     // @param token - is a reference to the token used for which a given account is being loaded,

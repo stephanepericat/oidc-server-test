@@ -8,6 +8,7 @@ import { urlencoded } from 'express' // eslint-disable-line import/no-unresolved
 
 // import Account from '../support/account.js'
 import * as errors from './errors.js' // from 'oidc-provider';
+import { getUser } from './get-user.js'
 
 const body = urlencoded({ extended: false })
 
@@ -104,11 +105,12 @@ export default (app, provider) => {
           prompt: { name },
         } = await provider.interactionDetails(req, res)
         assert.equal(name, 'login')
-        // const account = await Account.findByLogin(req.body.login)
+
+        const account = await getUser(req.body.login, req.body.password)
 
         const result = {
           login: {
-            accountId: account.accountId,
+            accountId: account?.username || null,
           },
         }
 
